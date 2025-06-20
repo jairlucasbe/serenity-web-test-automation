@@ -136,21 +136,28 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.12.0</version>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
                 <executions>
                     <execution>
+                        <id>serenity-reports</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>check</goal>
-                            <goal>cpd-check</goal>
+                            <goal>aggregate</goal>
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.21.0</version>
                 <configuration>
+                    <targetJdk>17</targetJdk>
                     <includeTests>true</includeTests>
                     <linkXRef>false</linkXRef>
-                    <sourceEncoding>utf-8</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
                     <analysisCache>true</analysisCache>
                     <printFailingErrors>true</printFailingErrors>
@@ -159,7 +166,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.8</version>
+                <version>4.7.3.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -171,7 +178,7 @@
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                     <failOnError>true</failOnError>
-                    <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+                    <!--<excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>-->
                     <plugins>
                         <plugin>
                             <groupId>com.h3xstream.findsecbugs</groupId>
@@ -181,6 +188,29 @@
                     </plugins>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>abrir-reporte-serenity</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>start</argument>
+                                <argument>${project.build.directory}/site/serenity/index.html</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
