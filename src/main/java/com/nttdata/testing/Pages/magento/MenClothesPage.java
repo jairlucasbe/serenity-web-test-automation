@@ -30,6 +30,28 @@ public class MenClothesPage extends PageObject {
     public static final Target SECOND_PRODUCT_ITEM = Target.the("segundo producto de la lista")
             .located(By.cssSelector("ol.products.list.items.product-items > li.item.product.product-item:nth-of-type(2) div.product-item-info"));
 
+    public static final Target BTN_TALLA_XS = Target.the("Escoger Talla XS")
+            .located(By.id("option-label-size-143-item-166"));
 
+    public static final Target BTN_COLOR = Target.the("Escoger Color Verde")
+            .located(By.id("option-label-color-93-item-53"));
+
+    public static final Target BTN_QTY = Target.the("Caja de elementos de la cantidad")
+            .located(By.id("qty"));
+
+    public static final Target BTN_CART = Target.the("Boton de Agregar a Carrito")
+            .located(By.id("product-addtocart-button"));
+
+    public static final Target BTN_VER_CARRITO = Target.the("Botón para ir al carrito")
+            .located(By.cssSelector("a.action.showcart.active"));
+
+    public static final Target LOGO_HEADER = Target.the("Logo del encabezado")
+            .located(By.cssSelector("a.logo"));
+
+    public static final Target BTN_CART_PROCEDER = Target.the("Botón de proceder con la compra")
+            .located(By.cssSelector("button#top-cart-btn-checkout"));
+
+    public static final Target MSG_PRODUCT_ADDED = Target.the("mensaje de producto agregado al carrito")
+            .locatedBy("//div[contains(text(),'You added') and contains(text(),'to your')]");
 
 }
